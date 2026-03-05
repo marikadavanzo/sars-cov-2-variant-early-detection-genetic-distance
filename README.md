@@ -17,7 +17,7 @@ The analysis spans genomic data from six European countries:
 * Sweden (SE)
 * Denmark (DK)
 * France (FR)
-* Spain (ES)
+* Spain (SP)
 
 Sequence data originate from **GISAID** and are processed using the clustering framework introduced by **de Hoffer et al. (2022)**. 
 
