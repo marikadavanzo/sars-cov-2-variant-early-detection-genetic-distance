@@ -269,7 +269,7 @@ After variant detection, hospitalization trends are modeled using additional not
 ## Denmark Data Preparation
 
 ```
-Denmark_data_preparation.ipynb
+8_Denmark_data_preparation.ipynb
 ```
 
 This notebook prepares the dataset combining:
@@ -283,7 +283,7 @@ This notebook prepares the dataset combining:
 ## CatBoost Regression Model
 
 ```
-CatBoost_Denmark.ipynb
+9_CatBoost_Denmark.ipynb
 ```
 
 A **CatBoost regression model** is used to predict weekly hospitalizations per variant chain.
