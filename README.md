@@ -96,7 +96,7 @@ data/
 2020_SE/Covid_cluster.csv
 2020_DK/Covid_cluster.csv
 2020_FR/Covid_cluster.csv
-2020_ES/Covid_cluster.csv
+2020_SP/Covid_cluster.csv
 ```
 
 Each `Covid_cluster.csv` contains the spike-sequence clustering results used to reconstruct variant chains.
