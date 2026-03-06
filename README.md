@@ -10,42 +10,24 @@ The project integrates genomic surveillance, machine learning, and epidemiologic
 * identify early signals of **variant dominance** using a **Deep Neural Network (DNN)**
 * evaluate the relationship between **genetic distance and hospitalization trends** using **CatBoost regression**
 
-The analysis spans genomic data from six European countries:
-
-* Italy (IT)
-* Germany (DE)
-* Sweden (SE)
-* Denmark (DK)
-* France (FR)
-* Spain (SP)
+The analysis spans genomic data from six European countries: Italy (IT), Germany (DE), Sweden (SE), Denmark (DK), France (FR) and Spain (SP).
 
 Sequence data originate from **GISAID** and are processed using the clustering framework introduced by **de Hoffer et al. (2022)**. 
 
-# Pipeline
+## Pipeline in a nutshell
 
-Spike sequences (GISAID)
-        ↓
-Clustering algorithm (de Hoffer et al.)
-        ↓
-Covid_cluster.csv
-        ↓
-Chain reconstruction
-        ↓
-Raw variant chains
-        ↓
-Double sigmoid fit
-        ↓
-Chain parameters
-        ↓
-Synthetic dataset generation
-        ↓
-DNN training
-        ↓
-Prediction of dominant variants
-        ↓
-Denmark analysis
-        ↓
-CatBoost model for hospitalization drivers
+1. Spike sequences downloaded from **GISAID**
+2. Clustering algorithm (de Hoffer et al.)
+3. Generation of `Covid_cluster.csv`
+4. Chain reconstruction
+5. Raw variant chains
+6. Double sigmoid fitting
+7. Extraction of chain parameters
+8. Synthetic dataset generation
+9. Deep Neural Network (DNN) training
+10. Prediction of dominant variants
+11. Denmark epidemiological analysis
+12. CatBoost hospitalization model
 
 ---
 
@@ -139,8 +121,6 @@ data/Dataset_predominant_chains_realworld.csv
 
 This dataset contains the fitted parameters used to generate simulated predominant chains for training the deep learning model.
 
----
-
 # Analysis Pipeline
 
 The workflow is organized as a sequence of Jupyter notebooks.
@@ -164,8 +144,6 @@ Output:
 
 These chains represent the temporal dynamics of spike sequence clusters.
 
----
-
 ## 2. Fit of Chains
 
 ```
@@ -174,9 +152,7 @@ These chains represent the temporal dynamics of spike sequence clusters.
 
 Each chain is fitted using a **double sigmoid function**:
 
-[
-P_c(x)=L\frac{1}{1+e^{-(x-b)/a}} - L_2\frac{1}{1+e^{-(x-b_2)/a_2}}
-]
+Pc(x) = L / (1 + exp(-(x-b)/a)) − L2 / (1 + exp(-(x-b2)/a2))
 
 This captures:
 
@@ -191,8 +167,6 @@ Key parameters extracted:
 
 Early-stage parameters (`a₃`, `a₄`, etc.) are later used for variant classification.
 
----
-
 ## 3. Calibration Curve
 
 ```
@@ -206,16 +180,12 @@ This step evaluates the relationship between:
 
 The calibration follows an inverse power-law model:
 
-[
-|t_0| = \frac{A}{\sqrt{x}}
-]
+|t0| = A / sqrt(x)
 
 where:
 
 * `x` = number of sequences per week
 * `t₀` = time to isolate a chain.
-
----
 
 ## 4. Dataset Generation – Predominant Chains
 
@@ -227,8 +197,6 @@ Using real-world chains, this notebook generates **synthetic predominant chains*
 
 * sampling from distributions fitted on real parameters
 * adding noise to simulate early epidemic dynamics.
-
----
 
 ## 5. Dataset Generation – Transient Chains
 
@@ -244,8 +212,6 @@ Two classes are generated:
 * **below-threshold transient chains**
 
 These mimic variants that fail to spread widely.
-
----
 
 ## 6. DNN Dataset Construction
 
@@ -265,8 +231,6 @@ Features include:
 * early prevalence values
 * sigmoid fit parameters
 * derivatives of growth parameters.
-
----
 
 ## 7. Deep Neural Network Training
 
@@ -296,8 +260,6 @@ Performance is evaluated using:
 * false positive rates
 * confusion matrices.
 
----
-
 # Hospitalization Modeling (Denmark)
 
 After variant detection, hospitalization trends are modeled using additional notebooks.
@@ -317,8 +279,6 @@ This notebook prepares the dataset combining:
 * containment measures
 * hospitalization data
 * genetic distances between variants.
-
----
 
 ## CatBoost Regression Model
 
@@ -342,8 +302,6 @@ Model outputs include:
 * feature importance analysis
 * SHAP interpretation.
 
----
-
 # Environment
 
 The analysis can be reproduced using the provided environment file.
@@ -360,8 +318,6 @@ Activate it:
 conda activate covML
 ```
 
----
-
 # Data Availability
 
 SARS-CoV-2 sequence data were obtained from:
@@ -377,8 +333,6 @@ Additional epidemiological data sources include:
 
 Due to GISAID data sharing policies, raw sequence data are not redistributed in this repository.
 
----
-
 # Citation
 
 If you use this repository, please cite:
@@ -388,8 +342,6 @@ If you use this repository, please cite:
 Preprint:
 
 [https://doi.org/10.1101/2025.09.03.25334908](https://doi.org/10.1101/2025.09.03.25334908)
-
----
 
 # License
 
