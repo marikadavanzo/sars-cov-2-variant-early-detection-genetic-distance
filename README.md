@@ -108,7 +108,7 @@ Each `Covid_cluster.csv` contains the spike-sequence clustering results used to 
 The notebook
 
 ```
-Dataset_predominant_chains.ipynb
+4_Dataset_predominant_chains.ipynb
 ```
 
 requires a CSV file containing **real-world predominant chains**, derived from the fitted prevalence curves from real-world data for variants.
@@ -116,7 +116,7 @@ requires a CSV file containing **real-world predominant chains**, derived from t
 Example:
 
 ```
-data/Dataset_predominant_chains_realworld.csv
+data/Dataset_predominant_chains_from_data.csv
 ```
 
 This dataset contains the fitted parameters used to generate simulated predominant chains for training the deep learning model.
